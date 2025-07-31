@@ -51,8 +51,13 @@ button.facebook {
   color: white;
 }
 
-button.apple {
-  background-color: #000;
+button.google {
+  background-color: #db4437;
+  color: white;
+}
+
+button.twitter {
+  background-color: #1da1f2;
   color: white;
 }
 
