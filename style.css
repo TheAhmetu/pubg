@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: url('pungg.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo {
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo span {
+  font-size: 32px;
+  display: block;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 250px;
+  transition: 0.2s ease;
+}
+
+button.facebook {
+  background-color: #3b5998;
+  color: white;
+}
+
+button.apple {
+  background-color: #000;
+  color: white;
+}
+
+button.phone {
+  background-color: #f4b400;
+  color: black;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+.legal {
+  margin-top: 20px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.legal a {
+  color: #4fc3f7;
+  text-decoration: none;
+}
